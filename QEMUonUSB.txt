@@ -1,0 +1,49 @@
+http://willhaley.com/blog/simple-portable-linux-qemu-vm-usb/
+
+
+ISOs:
+
+https://ftp.heanet.ie/disk1/
+
+
+/proc/sys/net/ipv4/ip_forward
+
+
+Sample Script:
+
+
+
+C:\Users\v734344\Desktop\Cygwin\home\v734344\QemuWin\qemu-img create -f vpc ubuntu.vhd 1G
+
+C:\Users\v734344\Desktop\Cygwin\home\v734344\QemuWin\qemu-system-x86_64 -L C:\Users\v734344\Desktop\Cygwin\home\v734344\QemuWin\Bios -m 1024 -kernel linux -initrd initrd.gz -hda ubuntu.vhd -append "home=sda1 opt=sda1 tce=sda1"
+
+
+
+QemuWin\qemu-system-i386 -L C:\tc\QemuWin\Bios -m 1024 -kernel C:\tc\vmlinuz -initrd C:\tc\core.gz -hda C:\tc\tc.vhd -append "home=sda1 opt=sda1 tce=sda1" 
+
+
+C:\Users\v734344\Desktop\Cygwin\home\v734344\QemuWin\qemu-system-x86_64 -L C:\Users\v734344\Desktop\Cygwin\home\v734344\QemuWin\Bios -m 1024 -kernel vmlinuz64 -initrd initrd.img -hda b2d.vhd -append "home=sda1 opt=sda1 tce=sda1"
+
+
+
+
+qemu-system-x86_64 -L "C:\Users\v734344\Desktop\Cygwin\home\v734344\QemuWin\Bios" -m 1024 -kernel vmlinuz64 -initrd initrd.img -hda b2d.vhd -append "home=sda1 opt=sda1 tce=sda1"
+
+
+qemu-system-i386 -boot d -cdrom "C:\Users\v734344\Desktop\ISOs\slacko-6.3.0.iso" -m 512 -L "C:\Users\v734344\Desktop\Cygwin\home\v734344\QemuWin\Bios"
+
+
+CYGWIN:
+
+$ qemu-system-i386 -boot d -cdrom "C:\Users\v734344\Desktop\ISOs\slacko-6.3.0.iso" -m 512 -L "QemuWin/Bios"
+
+
+qemu-system-x86_64 -boot d -cdrom "VM/rancher/rancheros.iso" -m 512 -L "QemuWin/Bios"
+
+
+qemu-system-x86_64 -boot d -cdrom /dev/cdrom -m 512    <========= running cdrom
+
+qemu-img create mydisk.img 10G     <========= create image
+
+qemu-system-x86_64 -boot d -cdrom image.iso -m 512 -hda mydisk.img    <======== running iso and hd image
+
